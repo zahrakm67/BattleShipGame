@@ -25,8 +25,9 @@ namespace BattleShipGame.Battleships.Boards
         {
             get
             {
-                return Coordinates.Row % 2 == 0 && Coordinates.Column % 2 == 0
+                var check= Coordinates.Row % 2 == 0 && Coordinates.Column % 2 == 0
                     || Coordinates.Row % 2 == 1 && Coordinates.Column % 2 == 1;
+                return check;
             }
         }
 

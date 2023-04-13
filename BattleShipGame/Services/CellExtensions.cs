@@ -8,10 +8,11 @@ namespace BattleShipGame.Services
   {
     public static List<Cell> Range(this List<Cell> cells, int startRow, int startColumn, int endRow, int endColumn)
     {
-      return cells.Where(x => x.Coordinates.Row >= startRow
-                                    && x.Coordinates.Column >= startColumn
-                                    && x.Coordinates.Row <= endRow
-                                    && x.Coordinates.Column <= endColumn).ToList();
+            var result = cells.Where(x => x.Coordinates.Row >= startRow
+                                            && x.Coordinates.Column >= startColumn
+                                            && x.Coordinates.Row <= endRow
+                                            && x.Coordinates.Column <= endColumn).ToList();
+            return result;
 
     }
 
