@@ -8,15 +8,13 @@ namespace BattleShipGame.Battleships.Game
     public class Player
     {
         public string Name { get; set; }
-        public TargetBoard TargetBoard { get; set; }
-        public OceanBoard OceanBoard { get; set; }
+        public OceanBoard Board { get; set; }
         public List<Ship> Fleet { get; set; }
 
         public Player(string name)
         {
             Name = name;
-            OceanBoard = new OceanBoard();
-            TargetBoard = new TargetBoard();
+            Board = new OceanBoard();
             Fleet = new List<Ship>(){
           new Battleship(),
           new Carrier(),
@@ -28,8 +26,7 @@ namespace BattleShipGame.Battleships.Game
 
         public void CreateBoard()
         {
-            OceanBoard.DrawBoard();
-            TargetBoard.DrawBoard();
+            Board.DrawBoard();
         }
 
         //Place all Ships with in the Ocean Board by validting if they are not out of range
@@ -50,16 +47,12 @@ namespace BattleShipGame.Battleships.Game
                     if (orientation == 0)
                     {
                         for (int i = 1; i < ship.Size; i++)
-                        {
                             endrow++;
-                        }
                     }
                     else
                     {
                         for (int i = 1; i < ship.Size; i++)
-                        {
                             endcolumn++;
-                        }
                     }
 
                     //We cannot place ships beyond the boundaries of the board
@@ -70,7 +63,7 @@ namespace BattleShipGame.Battleships.Game
                     }
 
                     //Check if specified cells are occupied
-                    var affectedCells = OceanBoard.Cells.Range(startrow, startcolumn, endrow, endcolumn);
+                    var affectedCells = Board.Cells.Range(startrow, startcolumn, endrow, endcolumn);
                     if (affectedCells.Any(x => x.IsOccupied))
                     {
                         isOpen = true;
@@ -81,33 +74,25 @@ namespace BattleShipGame.Battleships.Game
                     if (orientation == 0)
                     {
                         for (int i = startrow; i <= endrow; i++)
-                        {
-                            Console.WriteLine(Name + " says: \"" + ship.Name + " with " + ship.Size + " Holes is placed at Row-" + i.ToString() + " and Column-" + startcolumn.ToString() + ".");
                             ship.ShipCoordinates.Add(new Coordinates(i, startcolumn));
-                        }
                     }
                     else
                     {
                         for (int i = startcolumn; i <= endcolumn; i++)
-                        {
-                            Console.WriteLine(Name + " says: \"" + ship.Name + " with " + ship.Size + " Holes is placed at Row-" + i.ToString() + " and Column-" + startcolumn.ToString() + ".");
                             ship.ShipCoordinates.Add(new Coordinates(i, startcolumn));
-                        }
                     }
                     foreach (var cell in affectedCells)
-                    {
                         cell.BattleShipType = ship.BattleShipType;
-                    }
                     isOpen = false;
                 }
             }
 
-            return OceanBoard;
+            return Board;
         }
 
         public ShotType ProcessShot(Coordinates coords)
         {
-            var cell = OceanBoard.Cells.At(coords.Row, coords.Column);
+            var cell = Board.Cells.At(coords.Row, coords.Column);
             if (!cell.IsOccupied)
             {
                 return ShotType.Missed;

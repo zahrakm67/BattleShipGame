@@ -21,8 +21,8 @@ namespace BattleShipGame.Controllers
         [HttpGet("Init")]
         public ActionResult Init()
         {
-            battleShipGame.firstPlayer.CreateBoard();
-            var result = battleShipGame.firstPlayer.PlaceShips();
+            battleShipGame.Player.CreateBoard();
+            var result = battleShipGame.Player.PlaceShips();
             return Ok(result);
         }
 
@@ -30,7 +30,7 @@ namespace BattleShipGame.Controllers
         public ActionResult Fire([FromQuery] int row, [FromQuery] int column)
         {
             var coords = new Coordinates(row, column);
-            var result = battleShipGame.firstPlayer.ProcessShot(coords);
+            var result = battleShipGame.Player.ProcessShot(coords);
             return Ok(((ShotType)result).ToString());
         }
     }
