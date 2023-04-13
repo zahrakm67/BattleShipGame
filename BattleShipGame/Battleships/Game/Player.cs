@@ -15,18 +15,20 @@ namespace BattleShipGame.Battleships.Game
         {
             Name = name;
             Board = new OceanBoard();
-            Fleet = new List<Ship>(){
-          new Battleship(),
-          new Carrier(),
-          new Cruiser(),
-          new Destroyer(),
-          new Submarine()
-        };
+            Fleet = new List<Ship>()
+            {
+                new Battleship(),
+                new Carrier(),
+                new Cruiser(),
+                new Destroyer(),
+                new Submarine()
+            };
         }
 
         public void CreateBoard()
         {
             Board.DrawBoard();
+   
         }
 
         //Place all Ships with in the Ocean Board by validting if they are not out of range

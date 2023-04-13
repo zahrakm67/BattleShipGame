@@ -16,28 +16,28 @@ namespace BattleShipGame.Battleships.Ships
 
         public int Hits { get; set; }
 
-        public int IsMissed
-        {
-            get
-            {
-                return Hits;
-            }
-        }
+        //public int IsMissed
+        //{
+        //    get
+        //    {
+        //        return Hits;
+        //    }
+        //}
 
-        public bool IsHitted
-        {
-            get
-            {
-                return Hits >= Size;
-            }
-        } 
-        public bool IsSanked
-        {
-            get
-            {
-                return Hits == Size ;
-            }
-        }
+        //public bool IsHitted
+        //{
+        //    get
+        //    {
+        //        return Hits >= Size;
+        //    }
+        //} 
+        //public bool IsSanked
+        //{
+        //    get
+        //    {
+        //        return Hits == Size ;
+        //    }
+        //}
 
         public List<Coordinates> ShipCoordinates { get; set; }
     }
